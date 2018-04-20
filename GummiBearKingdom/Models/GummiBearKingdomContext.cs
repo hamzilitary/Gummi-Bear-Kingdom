@@ -4,7 +4,7 @@ namespace GummiBearKingdom.Models
 {
     public class GummiBearKingdomContext : DbContext
     {
-        //public DbSet<Item> Items { get; set; }
+        public DbSet<Item> Items { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder

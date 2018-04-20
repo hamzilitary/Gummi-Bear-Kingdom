@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using GummiBearKingdom.Models;
 
 namespace GummiBearKingdom
 {
@@ -27,7 +29,7 @@ namespace GummiBearKingdom
         {
             services.AddMvc();
             services.AddEntityFrameworkMySql()
-            .AddDbContext<ToDoListContext>(options =>
+            .AddDbContext<GummiBearKingdomContext>(options =>
                                       options
                                            .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
         }

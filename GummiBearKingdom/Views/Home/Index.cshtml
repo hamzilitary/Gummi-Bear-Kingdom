@@ -1,5 +1,4 @@
-﻿@{
-}
+﻿@model IEnumerable<GummiBearKingdom.Models.Item>
 
 <html>
 <head>
@@ -7,5 +6,6 @@
 </head>
 <body>
     <h2>Welcome to the Gummi Bear Kingdom!</h2>
+    <p>@Html.ActionLink("Task list", "Index", "Items")</p>
 </body>
 </html> 
