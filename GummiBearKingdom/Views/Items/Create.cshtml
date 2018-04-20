@@ -1,5 +1,8 @@
 ﻿@model GummiBearKingdom.Models.Item
-
+@{
+    ViewData["Title"] = "Item - Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <html>
 <head>
     <title>Gummy Bear - Create</title>
@@ -12,7 +15,7 @@
     {
         @Html.LabelFor(model => model.Description)
         @Html.TextBoxFor(model => model.Description)
-        <input type="submit" value="Add new task" />
+        <input type="submit" value="Add new bear" />
     }
     <p>@Html.ActionLink("Back to list", "Index")</p>
 </body>
