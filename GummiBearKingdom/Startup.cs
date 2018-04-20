@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using GummiBearKingdom.Models;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace GummiBearKingdom
 {
@@ -29,7 +30,7 @@ namespace GummiBearKingdom
         {
             services.AddMvc();
             services.AddEntityFrameworkMySql()
-            .AddDbContext<GummiBearKingdomContext>(options =>
+            .AddDbContext<GummiBearKingdomDbContext>(options =>
                                       options
                                            .UseMySql(Configuration["ConnectionStrings:DefaultConnection"]));
         }

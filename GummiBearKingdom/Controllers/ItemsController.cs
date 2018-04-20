@@ -11,7 +11,7 @@ namespace GummiBearKingdom.Controllers
 {
     public class ItemsController : Controller
     {
-        private GummiBearKingdomContext db = new GummiBearKingdomContext();
+        private GummiBearKingdomDbContext db = new GummiBearKingdomDbContext();
         public IActionResult Index()
         {
             List<Item> model = db.Items.ToList();
