@@ -13,5 +13,8 @@ namespace GummiBearKingdom.Models
         [Key]
         public int ItemId { get; set; }
         public string Description { get; set; }
+
     }
+
+    //Method for Rating will go here
 }
