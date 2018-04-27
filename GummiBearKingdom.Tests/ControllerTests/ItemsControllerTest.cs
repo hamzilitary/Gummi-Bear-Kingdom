@@ -53,24 +53,7 @@ namespace GummiBearKingdom.Tests.ControllerTests
             Assert.IsInstanceOfType(result, typeof(List<Item>));
         }
 
-        [TestMethod]
-        public void Mock_IndexModelContainsItems_Collection() // Confirms presence of known entry
-        {
-            // Arrange
-            DbSetup();
-            ItemsController controller = new ItemsController(mock.Object);
-            Item testItem = new Item();
-            testItem.Description = "Wash the dog";
-            testItem.ItemId = 1;
-
-            // Act
-            ViewResult indexView = controller.Index() as ViewResult;
-            List<Item> collection = indexView.ViewData.Model as List<Item>;
-
-            // Assert
-            CollectionAssert.Contains(collection, testItem);
-        }
-        
+      
        
     }
 }
