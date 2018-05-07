@@ -161,7 +161,7 @@ namespace GummiBearKingdom.Tests.ControllerTests
             ItemsController controller = new ItemsController(db);
             Item testItem = new Item
             {
-                ItemId = 3,
+                ItemId = 1,
                 Name = "Bruce Banner",
                 Cost = 4,
                 Description = "hulk"
@@ -175,6 +175,65 @@ namespace GummiBearKingdom.Tests.ControllerTests
             CollectionAssert.Contains(collection, testItem);
 
             
+        }
+        
+        [TestMethod]
+        public void testDb_Delete_RemovesToDb()
+        {
+            //Arrange
+            ItemsController controller = new ItemsController(db);
+            Item testItem = new Item
+            {
+                ItemId = 5,
+                Name = "Sarah Pearson gummi flavor",
+                Description = "pumpkin suprise",
+                Cost = 100000,
+
+            };
+            //Act
+            controller.Create(testItem);
+            controller.DeleteConfirmed(testItem.ItemId);
+            var collection = (controller.Index() as ViewResult).ViewData.Model as List<Item>;
+
+            //Assert
+            CollectionAssert.DoesNotContain(collection, testItem);
+        
+
+        }
+
+        [TestMethod]
+        public void test_Db_Edit_UpdatesInDb()
+        {
+            //Arrrange
+            ItemsController controller = new ItemsController(db);
+            Item testItem = new Item
+            {
+                ItemId = 6,
+                Name = "Lil Pump",
+                Description = "rap gummi",
+                Cost = 234
+
+
+            };
+            Item updatedItem = new Item
+            {
+                ItemId = 6,
+                Name = "Lil Flip",
+                Description = "rap dummi",
+                Cost = 123
+
+
+            };
+
+            //Act
+            controller.Create(testItem);
+            testItem.Name = "Lil Flip";
+            controller.Edit(testItem);
+            var returnItem = (controller.Details(1) as ViewResult).ViewData.Model as Item;
+
+            //Assert
+            Assert.AreEqual(returnItem.Name, "Lil Flip");
+
         }
 
         
