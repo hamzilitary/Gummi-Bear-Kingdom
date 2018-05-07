@@ -5,12 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using GummiBearKingdom.Models;
 
-namespace GummiBearKingdom.Migrations
+namespace GummiBearKingdom.Tests.Migrations
 {
-    [DbContext(typeof(GummiBearKingdomDbContext))]
-    partial class GummiBearKingdomDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(TestDbContext))]
+    [Migration("20180507205308_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2");

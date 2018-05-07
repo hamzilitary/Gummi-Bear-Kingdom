@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GummiBearKingdom.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -37,7 +38,7 @@ namespace GummiBearKingdom.Controllers
             Item thisItem = itemRepo.Items.FirstOrDefault(x => x.ItemId == id);
             return View(thisItem);
         }
-        public IActionResult Create()
+        public ViewResult Create()
         {
             return View();
         }

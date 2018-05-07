@@ -13,7 +13,7 @@ namespace GummiBearKingdom.Tests.ControllerTests
     public class ItemsControllerTests
     {
         Mock<IItemRepository> mock = new Mock<IItemRepository>();
-        EFItemRepository db = new EFItemRepository(new TestDbContext());
+        
 
         private void DbSetup()
         {
@@ -152,6 +152,32 @@ namespace GummiBearKingdom.Tests.ControllerTests
 
 
         }
+
+        EFItemRepository db = new EFItemRepository(new TestDbContext());
+        [TestMethod]
+        public void DB_CreateNewEntries_Collection()
+        {
+            //Arrange 
+            ItemsController controller = new ItemsController(db);
+            Item testItem = new Item
+            {
+                ItemId = 3,
+                Name = "Bruce Banner",
+                Cost = 4,
+                Description = "hulk"
+            };
+
+            //Act
+            controller.Create(testItem);
+            var collection = (controller.Index() as ViewResult).ViewData.Model as List<Item>;
+
+            //Assert
+            CollectionAssert.Contains(collection, testItem);
+
+            
+        }
+
+        
       
            
 

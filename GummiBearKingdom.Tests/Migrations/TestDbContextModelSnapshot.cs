@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using GummiBearKingdom.Models;
 
-namespace GummiBearKingdom.Migrations
+namespace GummiBearKingdom.Tests.Migrations
 {
-    [DbContext(typeof(GummiBearKingdomDbContext))]
-    partial class GummiBearKingdomDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(TestDbContext))]
+    partial class TestDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
