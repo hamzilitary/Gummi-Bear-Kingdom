@@ -217,7 +217,7 @@ namespace GummiBearKingdom.Tests.ControllerTests
             };
             Item updatedItem = new Item
             {
-                ItemId = 6,
+                ItemId = 9,
                 Name = "Lil Flip",
                 Description = "rap dummi",
                 Cost = 123
