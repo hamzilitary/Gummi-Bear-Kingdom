@@ -1,6 +1,6 @@
 # Gummi-Bear-Kingdom
 Hamza Naeem
-Code Review #1 for .NET
+Code Review #2 for .NET
 Objectives
 Phase One Objectives
 
@@ -86,4 +86,14 @@ A user should be able to click on each Product and see its Details.
 Admin
 
 An admin should be able to add and remove individual Products, as well as delete all Products.
-All users are Admin to begin with
+
+
+setup
+
+-Download or clone GitHub repository
+-Open MAMP
+-Run dotnet restore
+-Run dotnet ef database update
+-Run dotnet run
+
+Github Repo : https://github.com/hamzilitary/Gummi-Bear-Kingdom
