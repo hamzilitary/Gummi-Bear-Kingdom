@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GummiBearKingdom.Models;
+using System.Collections.Generic;
 
 namespace GummiBearKingdom.Tests
 {
@@ -73,7 +74,20 @@ namespace GummiBearKingdom.Tests
             Assert.AreEqual(priceResult, 2);
           
         }
-        
-        
+
+        [TestMethod]
+        public void Get_AverageRating_Int()
+        {
+            Item testItem = new Item { ItemId = 1, Description = "Gummi Bears!", Name = "Gummi Bears", Cost = 3 };
+            Review testReviewOne = new Review { ReviewId = 1, UserName = "A User", Body = "A Body", ItemId = 1, Rating = 0 };
+            Review testReviewTwo = new Review { ReviewId = 2, UserName = "A User", Body = "A Body", ItemId = 1, Rating = 0 };
+            testItem.Reviews = new List<Review> { testReviewOne, testReviewTwo };
+
+            double avgRating = testItem.AvgRating();
+
+            Assert.AreEqual(avgRating, 0);
+        }
+
+
     }
 }
