@@ -15,6 +15,8 @@ namespace GummiBearKingdom.Models
         public string Author { get; set; }
         public string Content { get; set; }
         public int Rating { get; set; }
+        public int ProductId { get; set; }
+        public virtual Item Item { get; set; }
 
     }
 }
