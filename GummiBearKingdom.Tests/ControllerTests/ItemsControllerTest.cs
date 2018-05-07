@@ -130,6 +130,28 @@ namespace GummiBearKingdom.Tests.ControllerTests
             //Assert
             Assert.IsInstanceOfType(resultView, typeof(ViewResult));
         }
+
+        [TestMethod]
+        public void Mock_PostResultViewDelete_ViewResult()
+        {
+            //Arrange 
+            Item testItem = new Item();
+            testItem.ItemId = 2;
+            testItem.Name = "Girl Scout Cookies";
+            testItem.Cost = 5;
+            testItem.Description = "dank gummi";
+
+            DbSetup();
+            ItemsController controller = new ItemsController(mock.Object);
+
+            //Act
+            var resultView = controller.Delete(testItem.ItemId) as ViewResult;
+
+            //Assert
+            Assert.IsInstanceOfType(resultView, typeof(ViewResult));
+
+
+        }
       
            
 
