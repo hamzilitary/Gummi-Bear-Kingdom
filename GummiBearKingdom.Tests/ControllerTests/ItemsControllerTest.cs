@@ -5,15 +5,38 @@ using GummiBearKingdom.Models;
 using GummiBearKingdom.Controllers;
 using Moq;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace GummiBearKingdom.Tests.ControllerTests
 {
 
     [TestClass]
-    public class ItemsControllerTests
+    public class ItemsControllerTests : IDisposable
     {
+        
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Add framework services.
+            services.AddMvc();
+            services.AddEntityFrameworkMySql()
+                .AddDbContext<GummiBearKingdomDbContext>(options =>
+                options
+                .UseMySql(Configuration["ConnectionStrings:TestConnection"]));
+        }
+        public IConfiguration Configuration { get; set; }
         Mock<IItemRepository> mock = new Mock<IItemRepository>();
         
+
+        public virtual void Dispose()
+        {
+            GummiBearKingdomDbContext context = new GummiBearKingdomDbContext();
+            context.Database.ExecuteSqlCommand("TRUNCATE TABLE items");
+            context.Database.ExecuteSqlCommand("TRUNCATE TABLE reviews");
+            
+        }
 
         private void DbSetup()
         {
@@ -161,7 +184,7 @@ namespace GummiBearKingdom.Tests.ControllerTests
             ItemsController controller = new ItemsController(db);
             Item testItem = new Item
             {
-                ItemId = 1,
+                ItemId = 66,
                 Name = "Bruce Banner",
                 Cost = 4,
                 Description = "hulk"
@@ -208,7 +231,7 @@ namespace GummiBearKingdom.Tests.ControllerTests
             ItemsController controller = new ItemsController(db);
             Item testItem = new Item
             {
-                ItemId = 6,
+                ItemId = 16,
                 Name = "Lil Pump",
                 Description = "rap gummi",
                 Cost = 234

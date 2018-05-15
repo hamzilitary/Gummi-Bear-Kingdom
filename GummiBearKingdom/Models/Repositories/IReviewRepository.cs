@@ -10,5 +10,6 @@ namespace GummiBearKingdom.Models
         IQueryable<Review> Reviews { get; }
         Review Save(Review review);
         void Remove(Review review);
+        void RemoveAll();
     }
 }

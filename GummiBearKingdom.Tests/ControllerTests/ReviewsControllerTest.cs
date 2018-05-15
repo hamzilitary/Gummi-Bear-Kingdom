@@ -1,17 +1,44 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
 using GummiBearKingdom.Models;
 using GummiBearKingdom.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using Moq;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace GummiBearTests
 {
     [TestClass]
-    public class ReviewsControllerTests
+    public class ReviewsControllerTests : IDisposable
     {
-        Mock<IReviewRepository> mock = new Mock<IReviewRepository>();
+     
+        
+
+            public void ConfigureServices(IServiceCollection services)
+            {
+                // Add framework services.
+                services.AddMvc();
+                services.AddEntityFrameworkMySql()
+                    .AddDbContext<GummiBearKingdomDbContext>(options =>
+                    options
+                    .UseMySql(Configuration["ConnectionStrings:TestConnection"]));
+            }
+            public IConfiguration Configuration { get; set; }
+           
+
+
+            public virtual void Dispose()
+            {
+                GummiBearKingdomDbContext context = new GummiBearKingdomDbContext();
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE items");
+                context.Database.ExecuteSqlCommand("TRUNCATE TABLE reviews");
+
+            }
+            Mock<IReviewRepository> mock = new Mock<IReviewRepository>();
         EFItemRepository dbItem = new EFItemRepository(new TestDbContext());
         EFReviewRepository db = new EFReviewRepository(new TestDbContext());
 
@@ -62,7 +89,7 @@ namespace GummiBearTests
             DbSetUp();
             ReviewsController controller = new ReviewsController(db);
             ItemsController itemController = new ItemsController(dbItem);
-            Item testItem = new Item { ItemId = 2, Description = "Gummi Bears!", Name = "Gummi Bears", Cost = 1 };
+            Item testItem = new Item { ItemId = 7, Description = "Gummi Bears!", Name = "Gummi Bears", Cost = 1 };
             Review testReview = new Review { ReviewId = 1, Body = "A Review", Rating = 4, UserName = "A User", ItemId = 2 };
 
             itemController.Create(testItem);
@@ -78,7 +105,7 @@ namespace GummiBearTests
             ReviewsController controller = new ReviewsController(db);
            
          
-            Review testReview = new Review { ReviewId = 1, Body = "A Review", Rating = 4, UserName = "A User", ItemId = 1 };
+            Review testReview = new Review { ReviewId = 2, Body = "A Review", Rating = 4, UserName = "A User", ItemId = 1 };
 
             
             controller.Create(testReview);
